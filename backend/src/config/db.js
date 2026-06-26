@@ -12,6 +12,7 @@ const dbConfig = {
   charset:           'utf8mb4',
   timezone:          '+08:00',
   connectTimeout:    10000, 
+  ssl:               process.env.DB_SSL === 'true' ? {} : undefined,
 };
 
 console.log(`[Database] 正在尝试连接 MySQL: ${dbConfig.host}:${dbConfig.port}, 用户: ${dbConfig.user}, 数据库: ${dbConfig.database}`);
