@@ -1,0 +1,210 @@
+/* ── 整体布局 ── */
+.main-layout {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+/* ── 侧边栏 (Glassmorphism & Dark Tech) ── */
+.main-sider {
+  background: rgba(15, 23, 42, 0.85) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Logo */
+.sider-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.logo-icon {
+  font-size: 26px;
+  filter: drop-shadow(0 0 10px rgba(250, 173, 20, 0.6));
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #e2e8f0, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+  letter-spacing: 1px;
+}
+
+/* 用户卡片 */
+.sider-user-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 12px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s ease;
+}
+
+.sider-user-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.username {
+  color: #f8fafc !important;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.role-tag {
+  font-size: 11px;
+  color: #cbd5e1;
+}
+
+/* 菜单 (Neon Glow Active State) */
+.main-menu {
+  background: transparent !important;
+  border: none !important;
+  padding: 12px;
+}
+
+.main-menu .ant-menu-item {
+  border-radius: 10px !important;
+  margin: 4px 0 !important;
+  color: #94a3b8 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: flex;
+  align-items: center;
+}
+
+.main-menu .ant-menu-item:hover {
+  color: #f8fafc !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  transform: translateX(4px);
+}
+
+.main-menu .ant-menu-item-selected {
+  background: rgba(59, 130, 246, 0.15) !important;
+  color: #60a5fa !important;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 微光左边线 */
+.main-menu .ant-menu-item-selected::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #3b82f6;
+  box-shadow: 0 0 12px 2px rgba(59, 130, 246, 0.8);
+  border-radius: 0 4px 4px 0;
+}
+
+/* 图标高亮颜色微调 */
+.main-menu .ant-menu-item-selected .anticon {
+  color: #60a5fa !important;
+}
+
+/* ── Header ── */
+.main-header {
+  background: #ffffff !important;
+  padding: 0 24px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  margin-left: 220px;
+  transition: margin-left 0.2s;
+}
+
+.main-header.collapsed {
+  margin-left: 80px;
+}
+
+.collapse-btn {
+  font-size: 18px;
+  color: #475569 !important;
+  transition: transform 0.2s;
+}
+
+.collapse-btn:hover {
+  color: #3b82f6 !important;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-btn {
+  color: #475569 !important;
+  font-size: 18px;
+}
+
+.user-dropdown {
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.user-dropdown:hover {
+  background: #f1f5f9;
+}
+
+.header-username {
+  color: #1e293b;
+  font-weight: 500;
+}
+
+/* ── Content ── */
+.main-content {
+  margin-left: 220px;
+  padding: 32px 40px;
+  background: #f8fafc;
+  min-height: calc(100vh - 64px);
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 当 Sider 折叠时 */
+.ant-layout-sider-collapsed ~ .ant-layout .main-header,
+.ant-layout-sider-collapsed ~ .ant-layout .main-content {
+  margin-left: 80px;
+}
+
+/* 消息通知 Dropdown */
+.msg-item {
+  transition: background-color 0.2s;
+}
+.msg-item:hover {
+  background-color: #f8fafc;
+}

@@ -1,0 +1,172 @@
+.jobs-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 统一的高级搜索控制台 */
+.filter-card {
+  border-radius: 16px !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(16px);
+}
+
+/* 卡片式职位列表 (取代 Table) */
+.job-row-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.job-row-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -8px rgba(0,0,0,0.08);
+  border-color: #e2e8f0;
+  background: #f8fafc;
+}
+
+/* 高亮的薪资文字 */
+.salary-text {
+  color: #d97706; /* 质感原木暗金 */
+  font-weight: 700;
+  font-size: 16px;
+  text-shadow: 0 1px 2px rgba(217,119,6,0.1);
+}
+
+/* Hover 时查看按钮浮现高亮 */
+.job-action-btn {
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+}
+
+.job-row-card:hover .job-action-btn {
+  opacity: 1;
+  transform: translateX(0);
+  background: linear-gradient(135deg, #3b82f6, #6366f1) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* 公司卡框 (详情页部分) */
+.company-card {
+  background: #f8fafc !important;
+  border-radius: 12px !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.company-logo {
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  font-weight: 800;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
+}
+
+.job-detail {
+  padding: 4px 0;
+}
+
+/* --- Modal Bento Grid Styles --- */
+.custom-modal .ant-modal-body {
+  padding-bottom: 24px;
+}
+.custom-modal .ant-modal-footer {
+  border-top: 1px solid #e2e8f0;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  z-index: 10;
+}
+
+.bento-mini-card {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 12px 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid rgba(0,0,0,0.02);
+}
+.bento-mini-card .b-label {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+.bento-mini-card .b-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+.bento-salary {
+  background: #fffbeb !important;
+  border: 1px solid #fef3c7 !important;
+}
+.bento-salary .b-value {
+  color: #d97706 !important;
+}
+
+.rich-typography {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #475569;
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+}
+
+.ai-glass-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(238,242,255,0.7) 0%, rgba(224,231,255,0.4) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(199,210,254, 0.6);
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 24px;
+}
+.ai-glass-card::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 150px; height: 150px;
+  background: rgba(99, 102, 241, 0.15);
+  filter: blur(40px);
+  border-radius: 50%;
+}
+
+@keyframes subtle-pulse {
+  0% { filter: drop-shadow(0 0 4px rgba(99, 102, 241, 0.4)); }
+  50% { filter: drop-shadow(0 0 16px rgba(99, 102, 241, 0.8)); }
+  100% { filter: drop-shadow(0 0 4px rgba(99, 102, 241, 0.4)); }
+}
+.ai-core-progress {
+  animation: subtle-pulse 3s infinite ease-in-out;
+}
+
