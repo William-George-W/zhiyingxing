@@ -12,7 +12,7 @@ const allowedOrigins = new Set([
   'http://127.0.0.1:5174',
   'http://localhost:3000',
   'http://127.0.0.1:3000',
-  ...(process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(',') : []),
+  ...(process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(',').map(url => url.trim().replace(/\/$/, '')) : []),
 ].filter(Boolean));
 
 app.use(cors({
@@ -44,6 +44,14 @@ app.use('/api/chat',       require('./routes/chat.routes'));
 // ─── Ping ─────────────────────────────────────────────────────
 app.get('/api/ping', (req, res) => {
   res.json({ code: 0, message: 'pong', timestamp: new Date().toISOString() });
+});
+
+app.get('/api/debug-cors', (req, res) => {
+  res.json({
+    code: 0,
+    frontendUrlEnv: process.env.FRONTEND_URL || null,
+    allowedOrigins: Array.from(allowedOrigins)
+  });
 });
 
 // ─── 全局错误处理 ──────────────────────────────────────────────
