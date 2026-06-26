@@ -12,15 +12,31 @@ const allowedOrigins = new Set([
   'http://127.0.0.1:5174',
   'http://localhost:3000',
   'http://127.0.0.1:3000',
+  'https://zhiyinxing.vercel.app',
   ...(process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(',').map(url => url.trim().replace(/\/$/, '')) : []),
 ].filter(Boolean));
 
 app.use(cors({
   origin(origin, callback) {
-    if (!origin || allowedOrigins.has(origin)) {
+    // Allow requests with no origin (like mobile apps, curl, or same-origin requests)
+    if (!origin) {
       return callback(null, true);
     }
-    return callback(new Error(`CORS blocked origin: ${origin}`));
+    
+    // Check if origin is explicitly allowed or matches wildcards/patterns for development/previews
+    const isAllowed = allowedOrigins.has(origin) || 
+                      origin.endsWith('.vercel.app') || 
+                      origin.endsWith('.render.com') ||
+                      /^http:\/\/localhost(:\d+)?$/.test(origin) || 
+                      /^http:\/\/127\.0\.0\.1(:\d+)?$/.test(origin);
+
+    if (isAllowed) {
+      return callback(null, true);
+    }
+    
+    // Log blocked origin but do not pass an error to callback to avoid a 500 crash
+    console.warn(`[CORS] Rejected origin: ${origin}`);
+    return callback(null, false);
   },
   credentials: true,
 }));
